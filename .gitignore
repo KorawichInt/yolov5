@@ -1,14 +1,14 @@
 # Repo-specific GitIgnore ----------------------------------------------------------------------------------------------
-*.jpg
-*.jpeg
-*.png
+# *.jpg
+# *.jpeg
+# *.png
 *.bmp
 *.tif
 *.tiff
 *.heic
-*.JPG
-*.JPEG
-*.PNG
+# *.JPG
+# *.JPEG
+# *.PNG
 *.BMP
 *.TIF
 *.TIFF
@@ -24,7 +24,7 @@
 !cfg/yolov3*.cfg
 
 storage.googleapis.com
-runs/*
+# runs/*
 data/*
 data/images/*
 !data/*.yaml
@@ -35,7 +35,7 @@ data/images/*
 !data/images/bus.jpg
 !data/*.sh
 
-results*.csv
+# results*.csv
 
 # Datasets -------------------------------------------------------------------------------------------------------------
 coco/
