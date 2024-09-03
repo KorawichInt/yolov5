@@ -3,8 +3,8 @@ import os
 from tensorboardX import SummaryWriter
 
 # Set the path to your results.csv and the directory for TensorBoard logs
-results_csv_path = 'runs/train/exp5/results.csv' 
-log_dir = 'runs/train/exp5/tensor_data'
+results_csv_path = 'runs/train/exp8/results.csv' 
+log_dir = 'runs/train/exp8/tensor_data'
 
 # Initialize the TensorBoard writer
 writer = SummaryWriter(log_dir=log_dir)
