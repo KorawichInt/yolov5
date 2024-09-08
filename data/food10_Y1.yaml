@@ -9,8 +9,8 @@
 # Train/val/test sets as 1) dir: path/to/imgs, 2) file: path/to/imgs.txt, or 3) list: [path/to/imgs1, path/to/imgs2, ..]
 # Y1
 path: dataset/ # dataset root dir
-train: train_Y1/images/ # train images (relative to 'path') 128 images
-val: train_Y1/images/ # val images (relative to 'path') 128 images
+train: train_Y1/Y1_train.txt # train images (relative to 'path') 128 images
+val: train_Y1/Y1_val.txt # val images (relative to 'path') 128 images
 test: test/images/ # test images (optional)
 
 # Y2

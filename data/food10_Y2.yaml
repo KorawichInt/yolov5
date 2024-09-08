@@ -15,8 +15,8 @@
 
 # Y2
 path: dataset/ # dataset root dir
-train: train_Y2/images/ # train images (relative to 'path') 128 images
-val: train_Y2/images/ # val images (relative to 'path') 128 images
+train: train_Y2/Y2_train.txt # train images (relative to 'path') 128 images
+val: train_Y2/Y2_train.txt # val images (relative to 'path') 128 images
 test: test_Y2/images/ # test images (optional)
 
 # Classes
