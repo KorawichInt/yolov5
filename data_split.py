@@ -1,4 +1,4 @@
 from utils.dataloaders import autosplit
 
-test_path = "dataset/train_Y2/"
-result =autosplit(path=test_path)
+dataset_path = "dataset_food16/"
+result =autosplit(path=dataset_path)
