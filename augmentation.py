@@ -72,15 +72,17 @@ for filename in os.listdir(input_images_path):
         )
 
         ### Augmentation
-        croped_img, croped_boxes = v2.RandomCrop(size=(224, 224))(image, boxes)
+        # croped_img, croped_boxes = v2.RandomCrop(size=(224, 224))(image, boxes)
+        rotate_img, rotate_boxes = v2.RandomRotation(degrees=(0, 360))(image, boxes)
         blured_img, blured_boxes = v2.GaussianBlur(kernel_size=9, sigma=(0.8, 1.2))(image, boxes)
-        brightnessed_img, brightnessed_boxes = v2.ColorJitter(brightness=(1.1,1.5))(image, boxes)
-        darknessed_img, darknessed_boxes = v2.ColorJitter(brightness=(0.6,0.9))(image, boxes)
+        brightnessed_img, brightnessed_boxes = v2.ColorJitter(brightness=(1.1,1.3))(image, boxes)
+        darknessed_img, darknessed_boxes = v2.ColorJitter(brightness=(0.7,0.9))(image, boxes)
         horizontal_flip_img, horizontal_flip_boxes = v2.RandomHorizontalFlip(p=1.0)(image, boxes)
         vertical_flip_img, vertical_flip_boxes = v2.RandomVerticalFlip(p=1.0)(image, boxes)   
 
         augmentations = {
-            'croped': (croped_img, croped_boxes, 224, 224),
+        #     'croped': (croped_img, croped_boxes, 224, 224),
+            'rotated': (rotate_img, rotate_boxes, img_width, img_height),
             'blured': (blured_img, blured_boxes, img_width, img_height),
             'brightnessed': (brightnessed_img, brightnessed_boxes, img_width, img_height),
             'darknessed': (darknessed_img, darknessed_boxes, img_width, img_height),
@@ -99,7 +101,8 @@ for filename in os.listdir(input_images_path):
                     f.write(f'{class_id} {formatted_box}\n')
 
         # Save the augmented images (if needed)
-        croped_img.save(os.path.join(output_images_path, f'cropped_{filename}'))
+        # croped_img.save(os.path.join(output_images_path, f'cropped_{filename}'))
+        rotate_img.save(os.path.join(output_images_path, f'rotated_{filename}'))
         blured_img.save(os.path.join(output_images_path, f'blurred_{filename}'))
         brightnessed_img.save(os.path.join(output_images_path, f'brightnessed_{filename}'))
         darknessed_img.save(os.path.join(output_images_path, f'darknessed_{filename}'))
