@@ -12,10 +12,16 @@ import torch
 # output_labels_path = 'dataset/train_Y2/labels'
 
 # Test
-input_images_path = 'dataset/test/images'
-input_labels_path = 'dataset/test/labels'
-output_images_path = 'dataset/test_Y2/images'
-output_labels_path = 'dataset/test_Y2/labels'
+# input_images_path = 'dataset_food16/test/images'
+# input_labels_path = 'dataset_food16/test/labels'
+# output_images_path = 'dataset/test_Y2/images'
+# output_labels_path = 'dataset/test_Y2/labels'
+
+# All
+input_images_path = 'dataset_food16/images'
+input_labels_path = 'dataset_food16/labels'
+output_images_path = 'dataset_food16_aug/images'
+output_labels_path = 'dataset_food16_aug/labels'
 
 # Create the output folder if it does not exist
 os.makedirs(output_images_path, exist_ok=True)
@@ -70,12 +76,16 @@ for filename in os.listdir(input_images_path):
         blured_img, blured_boxes = v2.GaussianBlur(kernel_size=9, sigma=(0.8, 1.2))(image, boxes)
         brightnessed_img, brightnessed_boxes = v2.ColorJitter(brightness=(1.1,1.5))(image, boxes)
         darknessed_img, darknessed_boxes = v2.ColorJitter(brightness=(0.6,0.9))(image, boxes)
+        horizontal_flip_img, horizontal_flip_boxes = v2.RandomHorizontalFlip(p=1.0)(image, boxes)
+        vertical_flip_img, vertical_flip_boxes = v2.RandomVerticalFlip(p=1.0)(image, boxes)   
 
         augmentations = {
             'croped': (croped_img, croped_boxes, 224, 224),
             'blured': (blured_img, blured_boxes, img_width, img_height),
             'brightnessed': (brightnessed_img, brightnessed_boxes, img_width, img_height),
             'darknessed': (darknessed_img, darknessed_boxes, img_width, img_height),
+            'horizontal': (horizontal_flip_img, horizontal_flip_boxes, img_width, img_height),
+            'vertical': (vertical_flip_img, vertical_flip_boxes, img_width, img_height),
         }
 
         for prefix, (aug_img, aug_boxes, aug_width, aug_height) in augmentations.items():
@@ -89,7 +99,9 @@ for filename in os.listdir(input_images_path):
                     f.write(f'{class_id} {formatted_box}\n')
 
         # Save the augmented images (if needed)
-        # croped_img.save(os.path.join(output_images_path, f'cropped_{filename}'))
-        # blured_img.save(os.path.join(output_images_path, f'blurred_{filename}'))
-        # brightnessed_img.save(os.path.join(output_images_path, f'brightnessed_{filename}'))
-        # darknessed_img.save(os.path.join(output_images_path, f'darknessed_{filename}'))
+        croped_img.save(os.path.join(output_images_path, f'cropped_{filename}'))
+        blured_img.save(os.path.join(output_images_path, f'blurred_{filename}'))
+        brightnessed_img.save(os.path.join(output_images_path, f'brightnessed_{filename}'))
+        darknessed_img.save(os.path.join(output_images_path, f'darknessed_{filename}'))
+        horizontal_flip_img.save(os.path.join(output_images_path, f'horizontal_flip_{filename}'))
+        vertical_flip_img.save(os.path.join(output_images_path, f'vertical_flip_{filename}'))
