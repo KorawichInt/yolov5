@@ -92,7 +92,7 @@ for filename in os.listdir(input_images_path):
 
         for prefix, (aug_img, aug_boxes, aug_width, aug_height) in augmentations.items():
             # Save the augmented bounding boxes
-            output_label_file = os.path.join(output_labels_path, f'{filename.replace(".jpg", "")}_{prefix}.txt')
+            output_label_file = os.path.join(output_labels_path, f'{prefix}_{filename.replace(".jpg", "")}.txt')
             with open(output_label_file, 'w') as f:
                 for class_id, box in zip(class_ids, aug_boxes.tolist()):
                     # Convert XYXY to center_x, center_y, width, height in range 0-1
@@ -102,9 +102,10 @@ for filename in os.listdir(input_images_path):
 
         # Save the augmented images (if needed)
         # croped_img.save(os.path.join(output_images_path, f'cropped_{filename}'))
-        rotate_img.save(os.path.join(output_images_path, f'rotated_{filename}'))
-        blured_img.save(os.path.join(output_images_path, f'blurred_{filename}'))
-        brightnessed_img.save(os.path.join(output_images_path, f'brightnessed_{filename}'))
-        darknessed_img.save(os.path.join(output_images_path, f'darknessed_{filename}'))
-        horizontal_flip_img.save(os.path.join(output_images_path, f'horizontal_flip_{filename}'))
-        vertical_flip_img.save(os.path.join(output_images_path, f'vertical_flip_{filename}'))
+
+        # rotate_img.save(os.path.join(output_images_path, f'rotated_{filename}'))
+        # blured_img.save(os.path.join(output_images_path, f'blurred_{filename}'))
+        # brightnessed_img.save(os.path.join(output_images_path, f'brightnessed_{filename}'))
+        # darknessed_img.save(os.path.join(output_images_path, f'darknessed_{filename}'))
+        # horizontal_flip_img.save(os.path.join(output_images_path, f'horizontal_flip_{filename}'))
+        # vertical_flip_img.save(os.path.join(output_images_path, f'vertical_flip_{filename}'))
