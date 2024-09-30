@@ -40,7 +40,12 @@ output_folder = 'project_dataset_resized'
 os.makedirs(output_folder, exist_ok=True)
 
 # Loop through each file in the input folder
-for filename in os.listdir(input_folder):
+# for filename in os.listdir(input_folder):
+for filename in [input_folder+'\mama_5',
+                 input_folder+'\mama_7',
+                 input_folder+'\mama_8',
+                 input_folder+'\mama_9',
+                 input_folder+'\mama_10',]:
     if filename.endswith('.jpg') or filename.endswith('.png'):
         # Open the image file
         image_path = os.path.join(input_folder, filename)
