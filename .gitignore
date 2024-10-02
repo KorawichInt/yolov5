@@ -2,6 +2,8 @@
 # *.jpg
 # *.jpeg
 # *.png
+dataset_food16_aug - Copy/*
+dataset_food16_aug/*
 *.bmp
 *.tif
 *.tiff
