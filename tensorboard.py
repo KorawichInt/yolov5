@@ -2,8 +2,8 @@ import csv
 from tensorboardX import SummaryWriter
 
 # Paths to your CSV files and TensorBoard log directories
-results_csv_path_y1 = 'runs/train/exp12/results.csv' 
-results_csv_path_y2 = 'runs/train/exp13/results.csv' 
+results_csv_path_y1 = 'runs/train/exp8/results.csv' 
+results_csv_path_y2 = 'runs/train/exp8/results.csv' 
 log_dir_y1 = 'tensorboard/Y1'
 log_dir_y2 = 'tensorboard/Y2'
 

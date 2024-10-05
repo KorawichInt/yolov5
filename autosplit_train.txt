@@ -567,6 +567,7 @@
 ./dataset_food16_aug/images/horizontal_flip_stir_fried_veg_7.jpg
 ./dataset_food16_aug/images/horizontal_flip_stir_fried_veg_8.jpg
 ./dataset_food16_aug/images/horizontal_flip_stir_fried_veg_9.jpg
+<<<<<<< HEAD
 ./dataset_food16_aug/images/rotated_basil_1.jpg
 ./dataset_food16_aug/images/rotated_basil_10.jpg
 ./dataset_food16_aug/images/rotated_basil_2.jpg
@@ -714,3 +715,5 @@
 ./dataset_food16_aug/images/rotated_stir_fried_veg_7.jpg
 ./dataset_food16_aug/images/rotated_stir_fried_veg_8.jpg
 ./dataset_food16_aug/images/rotated_stir_fried_veg_9.jpg
+=======
+>>>>>>> a016d70da5aaefdd0375535e310c707d849491a4
