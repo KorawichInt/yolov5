@@ -55,7 +55,10 @@ dataset/*
 
 # Neural Network weights -----------------------------------------------------------------------------------------------
 *.weights
-*.pt
+# *.pt
+model/*
+yolov5n.pt
+yolov5s.pt
 *.pb
 *.onnx
 *.engine
