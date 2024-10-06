@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1, h2 {
+            text-align: center;
+        }
+        img {
+            display: block;
+            margin: 0 auto;
+            max-width: 100%;
+            height: auto;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        li {
+            margin: 5px 0;
+            background-color: #f9f9f9;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Food Recommended</h1>
+    
+    {% if processed_image %}
+        <h2>Processed Image:</h2>
+        <img src="{{ url_for('send_image', filename=processed_image) }}" alt="Processed Image">
+    {% endif %}
+
+    {% if classes %}
+        <h2>Detected Classes:</h2>
+        <ul>
+        {% for class_name in classes %}
+            <li>
+                <strong>Class:</strong> {{ class_name }}
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No classes found.</p>
+    {% endif %}
+    
+    {% if results %}
+        <h2>Detected Objects:</h2>
+        <ul>
+        {% for result in results %}
+            <li>
+                <strong>Result:</strong>
+                <pre>{{ result }}</pre>
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No results found.</p>
+    {% endif %}
+
+    {% if recommended_foods %}
+        <h2>Recommended Foods:</h2>
+        <ul>
+        {% for food in recommended_foods %}
+            <li>
+                <strong>Food:</strong> {{ food[0] }} - Ratio: Carb: {{ food[1][0] }}, Protein: {{ food[1][1] }}, Vegge: {{ food[1][2] }}
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No recommended foods found.</p>
+    {% endif %}
+    
+    <a href="/">Upload another image</a>
+</body>
+</html>
