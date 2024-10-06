@@ -1,0 +1,23 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Results</title>
+</head>
+<body>
+    <h1>Prediction Results</h1>
+
+    {% if processed_image %}
+        <h2>Processed Image:</h2>
+        <img src="{{ url_for('send_image', filename=processed_image) }}" alt="Processed Image" style="max-width: 100%; height: auto;">
+    {% else %}
+        <p>No image processed.</p>
+    {% endif %}
+
+    <a href="/">Upload another image</a>
+</body>
+</html>
+
+
