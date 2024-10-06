@@ -75,10 +75,14 @@ os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 # กำหนด path สำหรับผลลัพธ์
 RESULTS_FOLDER = r'runs/detect/exp'
 
+# กำหนด path สำหรับ cover.png
+COVER_IMG = r'img_source/'
+
 @app.route('/')
 def upload_form():
     return render_template('upload.html')
 
+@app.route('/', methods=['POST'])
 @app.route('/', methods=['POST'])
 def upload_image():
     if 'file' not in request.files:
@@ -87,21 +91,20 @@ def upload_image():
     if file.filename == '':
         return 'No selected file'
     
-    # บันทึกไฟล์ภาพที่อัปโหลด
+    # Save the uploaded file
     file_path = os.path.join(UPLOAD_FOLDER, file.filename)
     file.save(file_path)
 
-    # รันคำสั่ง detect.py
-    model_path = r'C:\Y4T1\241_353_Art_Intell_Eco_Mod\yolov5\food16_weights\best.pt'
-    command = f'py detect.py --save-txt --save-conf --weights {model_path} --source {file_path}'
+    # Run the detection command
+    model_path = r'D:\EcoSystem\yolov5_team\yolov5\food16_weights\best.pt'
+    command = f'py detect.py --save-csv --weights {model_path} --source {file_path}'
     result = subprocess.run(command, shell=True, capture_output=True, text=True)
 
-    # ตรวจสอบผลลัพธ์
+    # Check the result
     if result.returncode == 0:
-        # กำหนดชื่อไฟล์รูปภาพผลลัพธ์
-        processed_image_filename = f'{file.filename.split(".")[0]}.jpg'  # เปลี่ยนตามชื่อไฟล์ที่ YOLOv5 สร้าง
-        
-        # แสดงผลลัพธ์ในหน้า HTML
+        # Assuming the processed image name is derived from the uploaded file name
+        processed_image_filename = f'{file.filename.split(".")[0]}.jpg'  # Update according to YOLOv5 output
+
         return render_template('result.html', processed_image=processed_image_filename)
     else:
         return f'Error: {result.stderr}'
@@ -109,6 +112,10 @@ def upload_image():
 @app.route('/results/<path:filename>')
 def send_image(filename):
     return send_from_directory(RESULTS_FOLDER, filename)
+
+@app.route('/img/<path:filename>')
+def image(filename):
+    return send_from_directory(COVER_IMG, filename)
 
 if __name__ == '__main__':
     app.run(debug=True)
