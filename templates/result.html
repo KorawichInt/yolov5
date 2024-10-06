@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Detection Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f9f9f9;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .image-section, .recommendation-section {
+            margin-bottom: 30px;
+        }
+        .image-section img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            padding: 5px;
+            background-color: #fff;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        .recommendation-section p {
+            font-size: 1.1em;
+        }
+        .food-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .food-list li {
+            background: #eef;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .back-link {
+            text-decoration: none;
+            color: #007BFF;
+            font-weight: bold;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Image Display Section -->
+        <div class="image-section">
+            <h1>Processed Image</h1>
+            <img src="{{ url_for('send_image', filename=processed_image) }}" alt="Processed Image">
+        </div>
+
+        <!-- Recommendations Section -->
+        <div class="recommendation-section">
+            <h2>Meal Recommendations</h2>
+            
+            {% if avg_ratio and component and top_foods %}
+                <p><strong>Current Average Ratios:</strong></p>
+                <ul>
+                    <li>Carbohydrates: {{ "%.2f" | format(avg_ratio[0]) }}</li>
+                    <li>Protein: {{ "%.2f" | format(avg_ratio[1]) }}</li>
+                    <li>Vegetables: {{ "%.2f" | format(avg_ratio[2]) }}</li>
+                </ul>
+                
+                <p><strong>Focus On:</strong> {{ component | capitalize }}</p>
+                
+                <p><strong>Recommended Foods:</strong></p>
+                <ul class="food-list">
+                    {% for food in top_foods %}
+                        <li>
+                            <strong>{{ food[0].replace('_', ' ').title() }}</strong><br>
+                            Carb: {{ "%.2f" | format(food[1][0]) }}, 
+                            Protein: {{ "%.2f" | format(food[1][1]) }}, 
+                            Vegge: {{ "%.2f" | format(food[1][2]) }}
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No recommendations available at this time.</p>
+            {% endif %}
+        </div>
+
+        <!-- Navigation Link -->
+        <div>
+            <a href="{{ url_for('upload_form') }}" class="back-link">← Upload Another Image</a>
+        </div>
+    </div>
+</body>
+</html>

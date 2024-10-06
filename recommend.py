@@ -115,7 +115,8 @@ def recommend_meals():
         
         elif meal_num == 3:
             # Third meal
-            food_class_index = int(input("Enter 3rd meal food class (0-15): "))
+            # food_class_index = int(input("Enter 3rd meal food class (0-15): "))
+            food_class_index = ...
             third_meal_ratio = get_food_class(food_class_index)
             meal_history.append(third_meal_ratio)
             food_classes_eaten.append(food_class_names[food_class_index])
