@@ -188,15 +188,9 @@ for filename in os.listdir(input_images_path):
 
         ### Augmentation
         # croped_img, croped_boxes = v2.RandomCrop(size=(224, 224))(image, boxes)
-<<<<<<< HEAD
         rotate_img, rotate_boxes = v2.RandomRotation(degrees=(-45, 45))(image, boxes)
         blured_img, blured_boxes = v2.GaussianBlur(kernel_size=9, sigma=(1.05, 1.1))(image, boxes)
         brightnessed_img, brightnessed_boxes = v2.ColorJitter(brightness=(1.05,1.1))(image, boxes)
-=======
-        # rotate_img, rotate_boxes = v2.RandomRotation(degrees=(0, 360))(image, boxes)
-        blured_img, blured_boxes = v2.GaussianBlur(kernel_size=9, sigma=(0.1, 0.5))(image, boxes)
-        # brightnessed_img, brightnessed_boxes = v2.ColorJitter(brightness=(1.1,1.1))(image, boxes)
->>>>>>> a016d70da5aaefdd0375535e310c707d849491a4
         darknessed_img, darknessed_boxes = v2.ColorJitter(brightness=(0.7,0.9))(image, boxes)
         horizontal_flip_img, horizontal_flip_boxes = v2.RandomHorizontalFlip(p=1.0)(image, boxes)
         # vertical_flip_img, vertical_flip_boxes = v2.RandomVerticalFlip(p=1.0)(image, boxes)   
